@@ -111,6 +111,7 @@
             justify-content: center;
             font-weight: bold;
             font-size: 30px;
+            border: 3px solid #FFC0CB;
         }
     </style>
 </head>
@@ -300,6 +301,27 @@
                 $(this).find('.number__items').html($(this).find('.category__page__item__text').length);
             })
             setPostCount();
+
+            function changeBackGround() {
+                $category.each(function () {
+                    if ($(this).find('.btn').html() < 1) {
+                        $(this).find('.btn').css({ "background-color": "transparent" });
+                        $(this).find('.btn').html(" ");
+                    };
+                })
+            };
+
+            function changeColor() {
+                $category__page.each(function () {
+                    if ($(this).find('.number__items').html() < 1) {
+                        $(this).find('.number__items').css({ "background-color": "transparent" });
+                        $(this).find('.number__items').html(" ");
+                    };
+                })
+            }
+
+            changeBackGround();
+
             $button.click(function () {
                 $category__item.toggleClass("active");
             });
@@ -316,15 +338,12 @@
                     $numberField.html(+$numberField.html() - 1);
                 }
                 setPostCount();
+                changeColor();
             });
             $btn__back.click(function () {
                 $category__item.toggleClass("active");
                 $category__page.removeClass("active");
-                if ($category.each(function () {
-                    if ($(this).hasClass("active__category")) {
-                        $(this).find($btn).css({ "background-color": "transparent" });
-                    }
-                }));
+                changeBackGround();
             });
         });
     </script>
