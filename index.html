@@ -343,6 +343,10 @@
 
             changeBackGround();
 
+            let sum = 0;
+            $.each($.makeArray($btn.each(function () { $(this).html() })), function () { sum += parseFloat($(this).html()) || 0; });
+            $counter.html(sum);
+
             $button.click(function () {
                 $category__item.addClass("active");
             });
@@ -357,6 +361,7 @@
                 if (!$(this).hasClass("read")) {
                     $(this).addClass("read");
                     $numberField.html(+$numberField.html() - 1);
+                    $counter.html(+$counter.html() - 1);
                 }
                 setPostCount();
                 changeColor();
