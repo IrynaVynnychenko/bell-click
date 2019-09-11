@@ -23,6 +23,12 @@
             width: 100%;
             max-width: 100px;
             height: 70px;
+            margin-right: 20px;
+        }
+
+        .main-img__alert {
+            display: flex;
+            justify-content: center;
         }
 
         .main-img {
@@ -113,6 +119,18 @@
             font-size: 30px;
             border: 3px solid #FFC0CB;
         }
+
+        .counter {
+            background-color: bisque;
+            font-size: 26px;
+            width: 65px;
+            border-radius: 50%;
+            height: 65px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -123,6 +141,7 @@
                 <div class="col-lg-12 text-center">
                     <div class="main-img__alert">
                         <img src="kolokol.jpg" alt="">
+                        <div class="counter"></div>
                     </div>
                 </div>
             </div>
@@ -290,8 +309,10 @@
         let $text = $(".category__page__item__text");
         let $number__items = $(".number__items");
         let $page = $(".category__page");
+        let $counter = $(".counter");
 
         $(document).ready(function () {
+
             function setPostCount() {
                 $category.each(function () {
                     $(this).find('.btn').html($page.find(".category__page__item[data-index='" + $(this).attr('data-index') + "']").find('.category__page__item__text:not(.read)').length)
@@ -323,7 +344,7 @@
             changeBackGround();
 
             $button.click(function () {
-                $category__item.toggleClass("active");
+                $category__item.addClass("active");
             });
             $category.click(function () {
                 $(this).addClass("active__category");
