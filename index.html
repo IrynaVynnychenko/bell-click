@@ -315,11 +315,19 @@
 
             function setPostCount() {
                 $category.each(function () {
-                    $(this).find('.btn').html($page.find(".category__page__item[data-index='" + $(this).attr('data-index') + "']").find('.category__page__item__text:not(.read)').length)
+                    let categoryIndex = $(this).attr('data-index');
+                    const $articles = $page.find(`.category__page__item[data-index='${categoryIndex}']`);
+                    let countOfArticles = $articles.find('.category__page__item__text:not(.read)').length;
+
+                    $(this)
+                        .find('.btn')
+                        .html(countOfArticles)
                 });
             }
             $category__page.each(function () {
-                $(this).find('.number__items').html($(this).find('.category__page__item__text').length);
+                let count = $(this).find('.category__page__item__text').length
+
+                $(this).find('.number__items').html(count);
             })
             setPostCount();
 
@@ -344,7 +352,7 @@
             changeBackGround();
 
             let sum = 0;
-            $.each($.makeArray($btn.each(function () { $(this).html() })), function () { sum += parseFloat($(this).html()) || 0; });
+            $btn.each(function () { sum += parseFloat($(this).html()) || 0; });
             $counter.html(sum);
 
             $button.click(function () {
